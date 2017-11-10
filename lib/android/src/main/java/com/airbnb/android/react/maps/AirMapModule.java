@@ -63,6 +63,22 @@ public class AirMapModule extends ReactContextBaseJavaModule {
     }
   }
 
+//  @ReactMethod
+//  public void setZoomLevel(final int zoomLevel){
+//
+//    final ReactApplicationContext context = getReactApplicationContext();
+//
+//    // Add UI-block so we can get a valid reference to the map-view
+//    UIManagerModule uiManager = context.getNativeModule(UIManagerModule.class);
+//    uiManager.addUIBlock(new UIBlock() {
+//      public void execute(NativeViewHierarchyManager nvhm) {
+//        AirMapView view = (AirMapView) nvhm.resolveView(tag);
+//
+//
+//      }
+//    });
+//  }
+
   @ReactMethod
   public void takeSnapshot(final int tag, final ReadableMap options, final Promise promise) {
 

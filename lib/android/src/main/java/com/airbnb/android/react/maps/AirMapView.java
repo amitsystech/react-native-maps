@@ -87,6 +87,8 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
   private boolean destroyed = false;
   private final ThemedReactContext context;
   private final EventDispatcher eventDispatcher;
+  public double currentLat = 0.0;
+  public double currentLong = 0.0;
 
   private static boolean contextHasBug(Context context) {
     return context == null ||
@@ -368,6 +370,19 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
     }
   }
 
+  public void setCurrentLat(double currentLat) {
+    this.currentLat = currentLat;
+  }
+
+  public void setCurrentLong(double currentLong) {
+    this.currentLong = currentLong;
+  }
+
+    public void setZoomLevel(int zoomLevel) {
+    if (this.map != null)
+    this.map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLat, currentLong), zoomLevel));
+  }
+
   public void setRegion(ReadableMap region) {
     if (region == null) return;
 
@@ -384,7 +399,7 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
       // variable, and make a guess of zoomLevel 10. Not to worry, though: as soon as layout
       // occurs, we will move the camera to the saved bounds. Note that if we tried to move
       // to the bounds now, it would trigger an exception.
-      map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 10));
+      map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 0));
       boundsToMove = bounds;
     } else {
       map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));

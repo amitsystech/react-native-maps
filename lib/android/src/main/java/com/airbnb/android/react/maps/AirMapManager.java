@@ -195,6 +195,21 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
     view.map.setMaxZoomPreference(maxZoomLevel);
   }
 
+  @ReactProp(name = "currentLat")
+  public void setCurrentLat(AirMapView view, double currentLat) {
+    view.setCurrentLat(currentLat);
+  }
+
+  @ReactProp(name = "currentLong")
+  public void setCurrentLong(AirMapView view, double currentLong) {
+    view.setCurrentLong(currentLong);
+  }
+
+  @ReactProp(name = "zoomLevel")
+  public void setZoomLevel(AirMapView view, int zoomLevel) {
+    view.setZoomLevel(zoomLevel);
+  }
+
   @Override
   public void receiveCommand(AirMapView view, int commandId, @Nullable ReadableArray args) {
     Integer duration;
